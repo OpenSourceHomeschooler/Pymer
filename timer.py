@@ -1,5 +1,9 @@
 import Tkinter as Tk
-from winsound import Beep
+windows = True
+try:
+	from winsound import Beep
+except:
+	windows = False
 import threading
 import time
 
@@ -84,7 +88,8 @@ class timer:
 	def sound(self):
 		self.begin['command'] = self.startStopSound
 		self.root.update_idletasks()
-		Beep(500, 100)
+		if windows:
+			Beep(500, 100)
 		time.sleep(0.3)
 		self.soundAfter = self.root.after(1, self.sound)
 		if not self.contSound:
